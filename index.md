@@ -90,7 +90,7 @@ df_final = pd.merge(df_final, pop, how = 'left')
 df_final = df_final.fillna(0)
 df_final['adj_rev_mil'] = df_final['adj_rev_total'] / 1000000
 df_final = df_final.loc[:53]
-
+df_final.head(10)
 ```
 ![image](https://user-images.githubusercontent.com/92558174/141859358-838200cc-d7e6-4af7-b4bd-17e6383e9555.png)
 
