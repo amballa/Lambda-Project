@@ -1,19 +1,21 @@
-Unit 1 Project
----
-Historical Relationship between UFOs and Science Fiction Films
----
-Abdel Balla
+
+# Historical Relationship between UFOs and Science Fiction Films
 
 ### Background
-Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. 
+Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. We look to the sky for answers with equal parts hope and fear. But what we see is often not so clear. Whether it's blinking lights or impossible aerial movements, many have claimed to laid sight on other-wordly spacecraft. Over the past century alone, there has been over 80 thousand recorded sightings of unidentified flying objects across the world.
+Surely, the cosmos is too vast for a bipedal ape species to be the only technologically-inclined life-form!
+
+ Is there really something out there or are sightings the result of an overactive imagination?
 
 
 
 ### Datasets
 For the analysis, I used 3 publicly available dataset:
 1. UFO Sightings (National UFO Reporting Center via Kaggle)
-2. TMDB 5000 Movie (The Movie Database via Kaggle)
-3. US Population by Year (US Census Bureau)
+3. TMDB 5000 Movie (The Movie Database via Kaggle)
+4. US Population by Year (US Census Bureau)
+
+Limited by the time frame of the TMDB dataset, I chose to compare the data from 1960
 
 ### Hypothesis
 
