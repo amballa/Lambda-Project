@@ -34,7 +34,82 @@ ufo_final = ufo_final.loc[30:][:].reset_index()
 ufo_final = ufo_final.drop('index', axis = 1)
 ```
 
+```markdown
+movies = pd.read_csv('tmdb_movies_data.csv')
+movies.drop(['id', 'cast', 'homepage', 'director', 'tagline', 'keywords', 'overview', 'runtime', 'production_companies', 'vote_count', 'vote_average'], axis = 1, inplace = True)
+
+filtered_movies = movies.drop_duplicates()
+genre_drop = filtered_movies[filtered_movies['genres'].isnull() == True]
+filtered_movies = filtered_movies.drop(genre_drop.index)
+rev_drop = filtered_movies[filtered_movies['revenue'] == 0]
+filtered_movies = filtered_movies.drop(rev_drop.index)
+filtered_movies = filtered_movies.reset_index()
+filtered_movies = filtered_movies.drop('index', axis=1)
+
+def genre_movies(genre):
+  temp = filtered_movies
+  for i in range(len(filtered_movies)):
+    if genre not in temp.loc[i]['genres']:
+      temp = temp.drop(index=i)
+  temp = temp.sort_values(by = 'release_year')
+  return temp
+
+scifi_movies = genre_movies('Science Fiction')
+
+def genre_rev(genre_movies):
+  unique_years = genre_movies['release_year'].unique()
+  temp = pd.DataFrame(columns = ['year', 'adj_rev_total'])
+  temp['year'] = unique_years
+  r_vals = []
+  for i in range(len(unique_years)):
+    r = scifi_movies.loc[scifi_movies['release_year'] == unique_years[i], 'revenue_adj'].sum()
+    r_vals.append(r)
+  temp['adj_rev_total'] = r_vals
+  return temp
+
+scifi_rev = genre_rev(scifi_movies)
+```
+
+```markdown
+pop = pd.read_excel('us population.xlsx')
+
+pop['Date'] = pd.to_datetime(pop['Date'])
+pop['year'] = pd.DatetimeIndex(pop['Date']).year
+
+mil_pop = []
+for i in range(len(pop)):
+  mil_pop.append(float(pop.loc[i]['Population'][:-8]))
+pop['us_pop_mil'] = mil_pop
+
+pop.drop(['Date', 'Population'], axis = 1, inplace = True)
+```
+
+```markdown
+df_final = pd.merge(ufo_final ,scifi_rev, how = 'left')
+df_final = pd.merge(df_final, pop, how = 'left')
+df_final = df_final.fillna(0)
+df_final['adj_rev_mil'] = df_final['adj_rev_total'] / 1000000
+df_final = df_final.loc[:53]
+```
+
 ### Statistical Methods and Results
+![image](https://user-images.githubusercontent.com/92558174/141721215-3fc2695b-7aba-4f78-8535-fc3b0ae293f9.png)
+
+![image](https://user-images.githubusercontent.com/92558174/141721549-5026871c-b1dd-4924-9e3e-8d59054b547f.png)
+
+```markdown
+model = ols('ufo_counts ~ us_pop_mil', data = df_final).fit()
+print(model.summary())
+```
+![image](https://user-images.githubusercontent.com/92558174/141722252-109dea83-e2b4-41d6-b358-ca640b3e1c3d.png)
+
+
+```markdown
+model2 = ols('ufo_counts ~ us_pop_mil + adj_rev_mil', data = df_final).fit()
+print(model2.summary())
+```
+![image](https://user-images.githubusercontent.com/92558174/141722375-79531167-5fd7-4494-ba06-5249f306d793.png)
+
 
 
 ### (Conclusion Section)
