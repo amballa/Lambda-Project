@@ -1,9 +1,8 @@
-
+# Historical Relationship between UFOs and Science Fiction Films
 Abdel Balla
 
-The goal of this project...
-
 ### Background
+
 
 
 ### Datasets
@@ -16,7 +15,7 @@ For the analysis, I used 3 publicly available dataset:
 
 ### Data Wrangling & Feature Engineering
 
-```markdown
+```
 states = ['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'va', 'wa', 'wv', 'wi', 'wy']
 for i in range(len(ufo)):
   if ufo.loc[i]['state'] in states or ufo.loc[i]['country'] == 'us':
