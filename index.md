@@ -91,8 +91,9 @@ df_final = df_final.fillna(0)
 df_final['adj_rev_mil'] = df_final['adj_rev_total'] / 1000000
 df_final = df_final.loc[:53]
 
-![image](https://user-images.githubusercontent.com/92558174/141859358-838200cc-d7e6-4af7-b4bd-17e6383e9555.png)
 ```
+![image](https://user-images.githubusercontent.com/92558174/141859358-838200cc-d7e6-4af7-b4bd-17e6383e9555.png)
+
 
 ### Statistical Methods and Results
 ![image](https://user-images.githubusercontent.com/92558174/141721215-3fc2695b-7aba-4f78-8535-fc3b0ae293f9.png)
