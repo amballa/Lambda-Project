@@ -9,22 +9,30 @@ Humans have long been fascinated by space and the prospect of intelligent extrat
 ### Datasets
 For this analysis, I used 3 publicly available dataset:
 1. UFO Sightings (National UFO Reporting Center via Kaggle)
-    
-    - 80,332 records from 1910 to 2014 with date, location, coordinates, shape of object, duration, and other comments.
-    - 
-    - 
+    - 80,332 records from 1910 to 2014 with date, location, coordinates, shape of object, duration, and eyewitness comments.
+
 2. TMDB 5000 Movie (The Movie Database via Kaggle)
-    
     - 10,866 movie titles from 1960 to 2015 with information such as release date, cast, genre, plot summary, IMDB rating, production budget, and worldwide revenue.
-    - 
-3. US Population by Year (US Census Bureau)
 
-    -k
+3. US Population by Year (US Census Bureau)
+    - Resident population of the United States from 1900 to 2020.
     
 
-Limited by the time frames of the NUFORC and TMDB datasets, I chose to compare data from 1960 to 2013. Additionally, because the UFO reports date back to much farther than the establishment of the reporting center, older accounts may be obscured.
+Limited by the time frames of the NUFORC and TMDB datasets, I chose to compare data from 1960 to 2013. Additionally, because the UFO reports date back to the early 20th century - long before the establishment of the reporting center - older eyewitness accounts may be obscured and under-reported.
 
-### Hypothesis
+### Hypotheses
+I will be performing two linear regressions: one with a single varaible and the other with two variables.
+- Dependent variable = number of UFO sightings in a given year
+- Independent varaible #1 = revenue of movies in the Sci-Fi genre in a given year
+- Independent variable #2 = US population in a given year
+
+For the **single variable model**:
+- Null Hypothesis: there is no relationship between the number of UFO sightings and revenue of Sci-Fi movies
+- Alternative Hypthesis: there _is_ a relationship between the variables
+
+For the **multi-variable** model:
+- Null Hypothesis: there is no relationship between the number of UFO sightings and revenue of Sci-Fi movies after accounting for population
+- Alternative Hypthesis: there _is_ a relationship between the variables, even after accounting for population
 
 
 ### Data Wrangling & Feature Engineering
@@ -108,8 +116,12 @@ df_final.head(10)
 ![image](https://user-images.githubusercontent.com/92558174/141859358-838200cc-d7e6-4af7-b4bd-17e6383e9555.png)
 
 
-### Statistical Methods and Results
+### A Visualization
 ![image](https://user-images.githubusercontent.com/92558174/141721215-3fc2695b-7aba-4f78-8535-fc3b0ae293f9.png)
+
+
+### Statistical Methods and Results
+A single variable linear regression via Seaborn lmplot()
 
 ![image](https://user-images.githubusercontent.com/92558174/141721549-5026871c-b1dd-4924-9e3e-8d59054b547f.png)
 
