@@ -2,17 +2,27 @@
 # Historical Relationship between UFO Sightings and Popularity of Science-Fiction Movies
 
 ### Background
-Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. Surely, the cosmos is too vast for a bipedal ape species to be the only technologically-inclined life-form! We look to the sky for answers with equal parts hope and fear. But what we see is often not so clear. Whether it's blinking lights or impossible aerial movements, many have claimed to lay sight on phenomena that is beyond explanation. Over the past century alone, the National UFO Reporting Center has catalogued over 80 thousand eyewitness accounts of unidentified flying objects across the world. Perhaps unsurprisingly, nearly 90% of those accounts came from Americans. So what it about America that makes UFO sightings such a regular occurence?  Is there really something non-human out there or are the sightings the result of an overactive collective imagination? Are there cultural or political forces at play that might explain why so many Americans have these strange experiences? These questions remain open. But with this anaylsis, my goal is to compare the trends in the number of UFO sightings in the US with the box office performance of science-fiction films. I will also account for the population growth of the US over the same time period.
+Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. Surely, the cosmos is too vast for a bipedal ape species to be the only technologically-inclined life-form! We look to the sky for answers with equal parts hope and fear. But what we see is often not so clear. Whether it's blinking lights or impossible aerial movements, many have claimed to lay sight on phenomena that is beyond explanation. Over the past century alone, the National UFO Reporting Center has catalogued over 80 thousand eyewitness accounts of unidentified flying objects across the world. Perhaps unsurprisingly, nearly 90% of those accounts came from Americans. So what it about America that makes UFO sightings such a regular occurence?  Is there really something non-human out there or are the sightings the result of an overactive collective imagination? Are there cultural or political forces at play that might explain why so many Americans have these strange experiences? These questions remain open. But with this anaylsis, my goal is to compare the trends in the number of UFO sightings in the US with the box office performance of science-fiction films. I will also account for changes in the country's population over the same time period.
 
 
 
 ### Datasets
 For this analysis, I used 3 publicly available dataset:
 1. UFO Sightings (National UFO Reporting Center via Kaggle)
-3. TMDB 5000 Movie (The Movie Database via Kaggle)
-4. US Population by Year (US Census Bureau)
+    
+    - 80,332 records from 1910 to 2014 with date, location, coordinates, shape of object, duration, and other comments.
+    - 
+    - 
+2. TMDB 5000 Movie (The Movie Database via Kaggle)
+    
+    - 10,866 movie titles from 1960 to 2015 with information such as release date, cast, genre, plot summary, IMDB rating, production budget, and worldwide revenue.
+    - 
+3. US Population by Year (US Census Bureau)
 
-Limited by the time frame of the TMDB dataset, I chose to compare data from 1960 to 2013. 
+    -k
+    
+
+Limited by the time frames of the NUFORC and TMDB datasets, I chose to compare data from 1960 to 2013. Additionally, because the UFO reports date back to much farther than the establishment of the reporting center, older accounts may be obscured.
 
 ### Hypothesis
 
