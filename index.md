@@ -30,24 +30,45 @@ For the **single variable model**:
 - Null Hypothesis: there is no relationship between the number of UFO sightings and revenue of Sci-Fi movies
 - Alternative Hypthesis: there _is_ a relationship between the variables
 
-For the **multi-variable** model:
+For the **multi-variable model**:
 - Null Hypothesis: there is no relationship between the number of UFO sightings and revenue of Sci-Fi movies after accounting for population
 - Alternative Hypthesis: there _is_ a relationship between the variables, even after accounting for population
 
 
 ### Data Wrangling & Feature Engineering
+Both the UFO and movie datasets required quite a bit of data manipulation and cleanup. With the UFO dataset, the first step was to remove all entries from outside the United States. For this, I used the for loop in the code below since a significant number of entries contained the state abbreviation but nothing under the country header. Then to extract the year, I needed to convert the dates in strings into Pandas datetime objects. But because the Pandas to_datetime function cannot parse a time of 24:00 (midnight), I created a function to change each 24:00 in the date string to 0:00. From there, it was a straightforward sorting chronologically and creating a frequency table of the number of sightings per year.
+
 
 ```
+ufo = pd.read_csv('scrubbed.csv')
+
 states = ['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in', 
 'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 
 'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'va', 
 'wa', 'wv', 'wi', 'wy']
+
 for i in range(len(ufo)):
   if ufo.loc[i]['state'] in states or ufo.loc[i]['country'] == 'us':
     pass
   else:
     ufo.drop(index = i, inplace=True)
-    
+
+def fix_datetime_format(date_str):
+  if date_str[11:13] == '24' and date_str[2] == '/' and date_str[5] == '/':
+    date_str = date_str[0:11] + '00' + date_str[13:]
+    return date_str
+  elif date_str[10:12] == '24' and date_str[2] == '/' and date_str[4] == '/':
+    date_str = date_str[0:10] + '00' + date_str[12:]
+    return date_str
+  elif date_str[10:12] == '24' and date_str[1] == '/' and date_str[4] == '/':
+    date_str = date_str[0:10] + '00' + date_str[12:]
+    return date_str
+  elif date_str[9:11] == '24' and date_str[1] == '/' and date_str[3] == '/':
+    date_str = date_str[0:9] + '00' + date_str[11:]
+    return date_str
+  else:
+    return date_str
+
 ufo['datetime'] = ufo['datetime'].apply(fix_datetime_format)
 ufo['datetime'] = pd.to_datetime(ufo['datetime'], infer_datetime_format= True)
 ufo['year'] = pd.DatetimeIndex(ufo['datetime']).year
@@ -58,6 +79,7 @@ ufo_final = ufo_final.loc[30:][:].reset_index()
 ufo_final = ufo_final.drop('index', axis = 1)
 ```
 
+The TMBD dataset contained lots of information so the first step was to winnow it down to the interesting headers. Unlike the UFO dataset, this one contained duplicate entries and lots of missing data. Using the Pandas drop function, I removed all entries in which the genre or the revenue was missing. Then to create a subset of only science-fiction movies, I created a function that outputs a new DataFrame of only movies in a particular genre. The last step was to sum the revenues (adjusted for inflation) for all the movies in a particular year, which I created another function for. 
 ```markdown
 movies = pd.read_csv('tmdb_movies_data.csv')
 movies.drop(['id', 'cast', 'homepage', 'director', 'tagline', 'keywords', 'overview', 'runtime',
