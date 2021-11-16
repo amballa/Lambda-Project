@@ -38,7 +38,10 @@ For the **multi-variable** model:
 ### Data Wrangling & Feature Engineering
 
 ```
-states = ['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'va', 'wa', 'wv', 'wi', 'wy']
+states = ['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in', 
+'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 
+'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'va', 
+'wa', 'wv', 'wi', 'wy']
 for i in range(len(ufo)):
   if ufo.loc[i]['state'] in states or ufo.loc[i]['country'] == 'us':
     pass
@@ -57,7 +60,8 @@ ufo_final = ufo_final.drop('index', axis = 1)
 
 ```markdown
 movies = pd.read_csv('tmdb_movies_data.csv')
-movies.drop(['id', 'cast', 'homepage', 'director', 'tagline', 'keywords', 'overview', 'runtime', 'production_companies', 'vote_count', 'vote_average'], axis = 1, inplace = True)
+movies.drop(['id', 'cast', 'homepage', 'director', 'tagline', 'keywords', 'overview', 'runtime',
+'production_companies', 'vote_count', 'vote_average'], axis = 1, inplace = True)
 
 filtered_movies = movies.drop_duplicates()
 genre_drop = filtered_movies[filtered_movies['genres'].isnull() == True]
