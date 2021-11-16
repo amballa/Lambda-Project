@@ -7,7 +7,7 @@ Humans have long been fascinated by space and the prospect of intelligent extrat
 
 
 ### Datasets
-For this analysis, I used 3 publicly available dataset:
+For this analysis, I used three publicly available dataset:
 1. UFO Sightings (National UFO Reporting Center via Kaggle)
     - 80,332 records from 1910 to 2014 with date, location, coordinates, shape of object, duration, and eyewitness comments.
 
