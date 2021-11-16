@@ -211,10 +211,10 @@ From the two-variable regression model, we can see that there is _indeed_ a corr
 - The science fiction genre encompasses more than just space, aliens and UFOs.
 - Almost every movie has multiple genres. If science-fiction was one of them, the movie was included in the analysis.
 - Movie revenue is total international box office revenue, not domestic revenue.
-- Revenue may not be the ideal metric to track a film's cultural significance.
+- Revenue may not be the ideal metric to track a film's cultural impact.
 - This analysis does not take into account the effect of movies beyond the year of release in cinemas.
-- If there is indeed a causal relationship, the direction of causality is not obvious. Do popular science-fiction and alien-themed movies generate more sightings or could it be that increased sightings generate public interest which inspires movie producers to make more space-themed movies?
+- If there is indeed a causal relationship, the direction of causality is not obvious. Do popular science-fiction and alien-themed movies generate more sightings or could it be that increased sightings generate public interest which inspires movie producers to make more alien-themed movies?
 
 
-Similar analyses have been done by other data science enthusiasts but this one shows that even after accounting for population, relationship between UFO sightings and box office performance of Sci-Fi movies is still statistically signficant.
+Similar analyses have been done by other data science enthusiasts but this one shows that even after accounting for population numbers, the relationship between UFO sightings and the box office performance of Sci-Fi movies is still statistically signficant!
 
