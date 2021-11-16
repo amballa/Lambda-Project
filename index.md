@@ -21,9 +21,9 @@ For this analysis, I used 3 publicly available dataset:
 Limited by the time frames of the NUFORC and TMDB datasets, I chose to compare data from 1960 to 2013. Additionally, because the UFO reports date back to the early 20th century - long before the establishment of the reporting center - older eyewitness accounts may be obscured and under-reported.
 
 ### Hypotheses
-I will be performing two linear regressions: one with a single varaible and the other with two variables.
+I will be performing two linear regressions: one with a single variable and the other with two variables.
 - Dependent variable = number of UFO sightings in a given year
-- Independent varaible #1 = revenue of movies in the Sci-Fi genre in a given year
+- Independent variable #1 = revenue of movies in the Sci-Fi genre in a given year
 - Independent variable #2 = US population in a given year
 
 For the **single variable model**:
@@ -144,7 +144,9 @@ pop['us_pop_mil'] = mil_pop
 pop.drop(['Date', 'Population'], axis = 1, inplace = True)
 ```
 
-The last step was to create a final DataFrame with all of the varaibles necessary for the regression analysis. For this, I used the Pandas merge() function twice, joining on the shared year header.
+
+The last step was to create a final DataFrame with all of the variables necessary for the regression analysis. For this, I used the Pandas merge() function twice, joining on the shared year header.
+
 ```markdown
 df_final = pd.merge(ufo_final ,scifi_rev, how = 'left')
 df_final = pd.merge(df_final, pop, how = 'left')
@@ -153,15 +155,25 @@ df_final['adj_rev_mil'] = df_final['adj_rev_total'] / 1000000
 df_final = df_final.loc[:53]
 df_final.head(10)
 ```
+
 ![image](https://user-images.githubusercontent.com/92558174/141859358-838200cc-d7e6-4af7-b4bd-17e6383e9555.png)
 
 
-### A Visualization
+### Time Series Graphs
+
 ![image](https://user-images.githubusercontent.com/92558174/141721215-3fc2695b-7aba-4f78-8535-fc3b0ae293f9.png)
 
+### Correlation
+```
+from scipy.stats import pearsonr
+pearsonr(df_final['ufo_counts'], df_final['adj_rev_mil'])
+```
+![image](https://user-images.githubusercontent.com/92558174/141887844-1c5a39e8-3f7f-4da8-ae0d-f03f44d8b3a8.png)
 
-### Statistical Methods and Results
-A single variable linear regression via Seaborn lmplot()
+With a coefficient of +0.77 and a p-value of essentially 0, we see a fairly strong relationship between the number of UFO sightings and the adjusted revenue of Sci-Fi movies in the US from 1960 to 2013.
+
+### Linear Regression Results
+Single variable linear regression via Seaborn lmplot()
 
 ![image](https://user-images.githubusercontent.com/92558174/141721549-5026871c-b1dd-4924-9e3e-8d59054b547f.png)
 
@@ -180,7 +192,7 @@ print(model2.summary())
 
 
 
-### (Conclusion Section)
+
 
 
 ### Limitations of Analysis
