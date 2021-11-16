@@ -2,7 +2,7 @@
 # Historical Relationship between UFO Sightings and Popularity of Science-Fiction Movies
 
 ### Background
-Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. Surely, the cosmos is too vast for a bipedal ape species to be the only technologically-inclined life-form! We look to the sky for answers with equal parts hope and fear. But what we see is often not so clear. Whether it's blinking lights or impossible aerial movements, many have claimed to lay sight on phenomena that is beyond explanation. Over the past century alone, the National UFO Reporting Center has catalogued over 80 thousand eyewitness accounts of unidentified flying objects across the world. Perhaps unsurprisingly, nearly 90% of those accounts came from Americans. So what it about America that makes UFO sightings such a regular occurence?  Is there really something non-human out there or are the sightings the result of an overactive collective imagination? Are there cultural or political forces at play that might explain why so many Americans have these strange experiences? These questions remain open. But with this anaylsis, my goal is to compare the trends in the number of UFO sightings in the US with the box office performance of science-fiction films. I will also account for changes in the country's population over the same time period.
+Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. Surely, the cosmos is too vast for a bipedal ape species to be the only technologically-inclined life-form! We look to the sky for answers with equal parts hope and fear. But what we see is often not so clear. Whether it's blinking lights or impossible aerial movements, many have claimed to lay sight on phenomena beyond explanation. Over the past century alone, the National UFO Reporting Center has catalogued over 80 thousand eyewitness accounts of unidentified flying objects across the world. Perhaps unsurprisingly, nearly 90% of those accounts came from Americans. So what is it about America that makes UFO sightings such a regular occurence?  Is there really something non-human out there or are the sightings the result of an overactive collective imagination? Are there cultural or political forces at play that might explain why so many Americans have these strange experiences? These questions remain open. But with this analysis, my goal is to compare the trends in the number of UFO sightings in the US with the box office performance of science-fiction films. I will also account for changes in the country's population over the same time period.
 
 
 
@@ -28,11 +28,11 @@ I will be performing two linear regressions: one with a single variable and the 
 
 For the **single variable model**:
 - Null Hypothesis: there is no relationship between the number of UFO sightings and revenue of Sci-Fi movies
-- Alternative Hypthesis: there _is_ a relationship between the variables
+- Alternative Hypothesis: there _is_ a relationship between the variables
 
 For the **multi-variable model**:
 - Null Hypothesis: there is no relationship between the number of UFO sightings and revenue of Sci-Fi movies after accounting for population
-- Alternative Hypthesis: there _is_ a relationship between the variables, even after accounting for population
+- Alternative Hypothesis: there _is_ a relationship between the variables, even after accounting for population
 
 
 ### Data Wrangling & Feature Engineering
@@ -78,7 +78,8 @@ ufo['datetime'] = pd.to_datetime(ufo['datetime'], infer_datetime_format= True)
 ufo['year'] = pd.DatetimeIndex(ufo['datetime']).year
 ufo.sort_values(by = 'datetime', ascending = True, inplace = True)
 
-ufo_final = ufo['year'].value_counts().rename_axis('year').to_frame('ufo_counts').sort_values(by = 'year').reset_index()
+ufo_final = ufo['year'].value_counts().rename_axis('year').to_frame('ufo_counts')
+ufo_final = ufo_final.sort_values(by = 'year').reset_index()
 ufo_final = ufo_final.loc[30:][:].reset_index()
 ufo_final = ufo_final.drop('index', axis = 1)
 ```
@@ -163,7 +164,6 @@ df_final.head(10)
 
 ![image](https://user-images.githubusercontent.com/92558174/141721215-3fc2695b-7aba-4f78-8535-fc3b0ae293f9.png)
 
-We see the first spikes in the number of UFO sightings leading up to the year 2000, which coincides with the growing usage of the internet and online message boards.
 
 ### Correlation Results
 ```
@@ -175,18 +175,23 @@ pearsonr(df_final['ufo_counts'], df_final['adj_rev_mil'])
 With a coefficient of +0.77 and a p-value of essentially 0, we see a fairly strong relationship between the number of UFO sightings and the adjusted revenue of Sci-Fi movies in the US from 1960 to 2013.
 
 ### Linear Regression Results
-Single variable linear regression via Seaborn lmplot()
+Scatterplot and least-squares regression line with a 95% confidence interval
 
 ![image](https://user-images.githubusercontent.com/92558174/141721549-5026871c-b1dd-4924-9e3e-8d59054b547f.png)
 
+Here, we can see that there is indeed a positive correlation. There appears to be a significant horizontal cluster of data points with near-zero sightings and yearly revenues of sub $2 billion. And for years with relatively large revenue sums, the relationship to UFO sightings is even more pronounced. This may be due to a blockbuster-effect of certain films like Stars Wars and E.T. which gained widespread popularity and broke box office records.
+
+#### Univariate OLS
 ```markdown
 model = ols('ufo_counts ~ us_pop_mil', data = df_final).fit()
 print(model.summary())
 ```
 ![image](https://user-images.githubusercontent.com/92558174/141722252-109dea83-e2b4-41d6-b358-ca640b3e1c3d.png)
 
-The rounded p-value of 0.000 confirms the correlation calculation
+The zero p-value confirms the correlation we calculated above. An R-Squared value of 
 
+
+#### Multivariate OLS
 ```markdown
 model2 = ols('ufo_counts ~ us_pop_mil + adj_rev_mil', data = df_final).fit()
 print(model2.summary())
@@ -198,12 +203,16 @@ print(model2.summary())
 
 
 
-### Limitations of the Analysis
+## Limitations of the Analysis
 
-From the two-variable linear regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation does NOT mean causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time as this analysis is narrow in scope. Some limitations to consider include:
+From the two-variable linear regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means assoication, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue was the growing usage of the internet in the the late 90s and early 2000s. Some other limitations to consider include:
 
-- 
-- 
+- Over half of the TMDB dataset was unused due to either missing genre data or missing revenue data
+- The science fiction genre encompasses more than just space, aliens and UFOs
+- Almost every movie has multiple genres. If science-fiction was one of them, the movie was included in the analysis
+- Movie revenue is total international box office revenue, not domestic revenue
+- This analysis does not take into account the effect of movies beyond the year of release in cinemas
+- If there is indeed a causal relationship, the direction of causality is not obvious. Do popular science-fiction and alien-themed movies generate more sightings or could it be that increased sightings generate interest which inspires movie producers to make more space-themed movies? Both may be the case.
 
 
 Similar analyses have been done by other data science enthusiasts but none performed a linear regression with two independent variables. This analyses shows that even after accounting for population 
