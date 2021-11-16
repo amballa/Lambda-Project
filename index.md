@@ -7,7 +7,7 @@ Humans have long been fascinated by space and the prospect of intelligent extrat
 
 
 ### Datasets
-For this analysis, I used three publicly available dataset:
+For this analysis, I used three publicly available datasets:
 1. UFO Sightings (National UFO Reporting Center via Kaggle)
     - 80,332 records from 1910 to 2014 with date, location, coordinates, shape of object, duration, and eyewitness comments.
 
@@ -204,7 +204,7 @@ Taking into account population, we can see that we still get a p-value of less t
 
 ## Concluding Thoughts and Analysis Limitations
 
-From the two-variable regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means association, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue was the growing usage of the internet and the rise of mass media in the the late 90s and early 2000s. Some other limitations to consider include:
+From the two-variable regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means association, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue was the growing usage of the internet and the rise of mass media in the late 90s and early 2000s. Some other limitations to consider include:
 
 - The analysis was limited to the time period from 1960 to 2013.
 - Over half of the TMDB dataset was unused due to either missing genre data or missing revenue data.
@@ -216,5 +216,5 @@ From the two-variable regression model, we can see that there is _indeed_ a corr
 - If there is indeed a causal relationship, the direction of causality is not obvious. Do popular science-fiction and alien-themed movies generate more sightings or could it be that increased sightings generate public interest which inspires movie producers to make more alien-themed movies?
 
 
-Similar analyses have been done by other data science enthusiasts but this one shows that even after accounting for population numbers, the relationship between UFO sightings and the box office performance of Sci-Fi movies is still statistically signficant!
+Similar analyses have been done by other data science enthusiasts but this one shows that even after accounting for population numbers, the relationship between UFO sightings and the box office performance of Sci-Fi movies is still statistically significant!
 
