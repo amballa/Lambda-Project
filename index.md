@@ -38,10 +38,14 @@ For the **multi-variable model**:
 ### Data Wrangling & Feature Engineering
 Both the UFO and movie datasets required quite a bit of data manipulation and cleanup. With the UFO dataset, the first step was to remove all entries from outside the United States. For this, I used the for loop in the code below since a significant number of entries contained the state abbreviation but nothing under the country header. Then to extract the year, I needed to convert the dates in strings into Pandas datetime objects. But because the Pandas to_datetime function cannot parse a time of 24:00 (midnight), I created a function to change each 24:00 in the date string to 0:00. From there, it was a straightforward sorting chronologically and creating a frequency table of the number of sightings per year.
 
-
 ```
 ufo = pd.read_csv('scrubbed.csv')
+ufo.head()
+```
 
+![image](https://user-images.githubusercontent.com/92558174/141884964-9e195c29-0d9b-42d9-a557-ce6fa71b4138.png)
+
+```
 states = ['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in', 
 'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 
 'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'va', 
@@ -80,8 +84,15 @@ ufo_final = ufo_final.drop('index', axis = 1)
 ```
 
 The TMBD dataset contained lots of information so the first step was to winnow it down to the interesting headers. Unlike the UFO dataset, this one contained duplicate entries and lots of missing data. Using the Pandas drop function, I removed all entries in which the genre or the revenue was missing. Then to create a subset of only science-fiction movies, I created a function that outputs a new DataFrame of only movies in a particular genre. The last step was to sum the revenues (adjusted for inflation) for all the movies in a particular year, which I created another function for. 
+
 ```markdown
 movies = pd.read_csv('tmdb_movies_data.csv')
+movies.head()
+```
+
+![image](https://user-images.githubusercontent.com/92558174/141885163-3d298612-b0df-46d8-be64-b430eb610239.png)
+
+```
 movies.drop(['id', 'cast', 'homepage', 'director', 'tagline', 'keywords', 'overview', 'runtime',
 'production_companies', 'vote_count', 'vote_average'], axis = 1, inplace = True)
 
@@ -117,6 +128,8 @@ def genre_rev(genre_movies):
 scifi_rev = genre_rev(scifi_movies)
 ```
 
+The US Census dataset was the easiest to work with. The prepration consisted only of converting the dates to datetime objects to extract the year and converting the population numbers from strings to float values.
+
 ```markdown
 pop = pd.read_excel('us population.xlsx')
 
@@ -131,6 +144,7 @@ pop['us_pop_mil'] = mil_pop
 pop.drop(['Date', 'Population'], axis = 1, inplace = True)
 ```
 
+The last step was to create a final DataFrame with all of the varaibles necessary for the regression analysis. For this, I used the Pandas merge() function twice, joining on the shared year header.
 ```markdown
 df_final = pd.merge(ufo_final ,scifi_rev, how = 'left')
 df_final = pd.merge(df_final, pop, how = 'left')
