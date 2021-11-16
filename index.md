@@ -12,7 +12,7 @@ For this analysis, I used 3 publicly available dataset:
     - 80,332 records from 1910 to 2014 with date, location, coordinates, shape of object, duration, and eyewitness comments.
 
 2. TMDB 5000 Movie (The Movie Database via Kaggle)
-    - 10,866 movie titles from 1960 to 2015 with information such as release date, cast, genre, plot summary, IMDB rating, production budget, and worldwide revenue.
+    - 10,866 movie titles from 1960 to 2015 with information such as release date, cast, genre, plot summary, IMDB rating, production budget, and box office revenue .
 
 3. US Population by Year (US Census Bureau)
     - Resident population of the United States from 1900 to 2020.
@@ -197,7 +197,11 @@ print(model2.summary())
 
 ### Limitations of Analysis
 
-From the two-variable linear regression analysis, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation does NOT mean causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre as this analysis is extremely narrow and limited in scope.
+From the two-variable linear regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation does NOT mean causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre as this analysis is extremely narrow and limited in scope.
 
 - g
+- h
+
+
+Similar analyses have been done by other data science enthusiasts but none performed a linear regression with two independent variables. This analyses shows that even after accounting for population 
 
