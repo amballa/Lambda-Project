@@ -145,7 +145,7 @@ pop.drop(['Date', 'Population'], axis = 1, inplace = True)
 ```
 
 
-The last step was to create a final DataFrame with all of the variables necessary for the regression analysis. For this, I used the Pandas merge() function twice, joining on the shared year header.
+The last step was to create a final DataFrame with all of the variables necessary for the regression models. For this, I used the Pandas merge() function twice, joining on the shared year header.
 
 ```markdown
 df_final = pd.merge(ufo_final ,scifi_rev, how = 'left')
@@ -163,7 +163,9 @@ df_final.head(10)
 
 ![image](https://user-images.githubusercontent.com/92558174/141721215-3fc2695b-7aba-4f78-8535-fc3b0ae293f9.png)
 
-### Correlation
+We see the first spikes in the number of UFO sightings leading up to the year 2000, which coincides with the growing usage of the internet and online message boards.
+
+### Correlation Results
 ```
 from scipy.stats import pearsonr
 pearsonr(df_final['ufo_counts'], df_final['adj_rev_mil'])
@@ -183,6 +185,7 @@ print(model.summary())
 ```
 ![image](https://user-images.githubusercontent.com/92558174/141722252-109dea83-e2b4-41d6-b358-ca640b3e1c3d.png)
 
+The rounded p-value of 0.000 confirms the correlation calculation
 
 ```markdown
 model2 = ols('ufo_counts ~ us_pop_mil + adj_rev_mil', data = df_final).fit()
@@ -195,12 +198,12 @@ print(model2.summary())
 
 
 
-### Limitations of Analysis
+### Limitations of the Analysis
 
-From the two-variable linear regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation does NOT mean causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre as this analysis is extremely narrow and limited in scope.
+From the two-variable linear regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation does NOT mean causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time as this analysis is narrow in scope. Some limitations to consider include:
 
-- g
-- h
+- 
+- 
 
 
 Similar analyses have been done by other data science enthusiasts but none performed a linear regression with two independent variables. This analyses shows that even after accounting for population 
