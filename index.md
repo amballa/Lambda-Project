@@ -205,14 +205,14 @@ Taking into account population, we can see that we still get a p-value of less t
 
 ## Concluding Thoughts and Analysis Limitations
 
-From the two-variable regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means association, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue was the growing usage of the internet and the rise of mass media in the late 90s and early 2000s. Other limitations to consider include:
+From the two-variable regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means association, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue the explosion of the internet as well as social media in the late 1990s and early 2000s. Other limitations to consider include:
 
-- The analysis was limited to the time period from 1960 to 2013
-- Over half of the TMDB dataset was unused due to either missing genre data or missing revenue data
+- This analysis is limited to the time period from 1960 to 2013
+- Over half of the TMDB dataset remains unused due to missing data
 - The science fiction genre encompasses more than just space, aliens and UFOs
-- Almost every movie has multiple genres. If science-fiction was one of them, the movie was included in the analysis
-- Movie revenue is total international box office revenue, not domestic revenue
-- Revenue may not be the ideal metric to track a film's cultural impact
+- Almost every movie has multiple genres
+- Movie revenue is international revenue, not domestic 
+- Cinema revenue may not be the ideal metric to track a film's cultural impact and reach
 - This analysis does not take into account the effect of movies beyond the year of release
 
 
