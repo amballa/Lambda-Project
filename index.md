@@ -1,7 +1,7 @@
 ---
 title: Historical Relationship between UFO Sightings and Popularity of Science-Fiction Movies
 ---
-![image](https://user-images.githubusercontent.com/92558174/142338159-5916511c-a2ef-414b-89ae-93ef7422102a.png)
+![image](https://user-images.githubusercontent.com/92558174/142338159-5916511c-a2ef-414b-89ae-93ef7422102a.png) _Forbidden Planet (1956)_
 
 ### Background
 Humans have long been fascinated by space and the prospect of intelligent extraterrestrial life. Surely, the cosmos is too vast for a bipedal ape species to be the only technologically-inclined life-form! We look to the sky for answers with equal parts hope and fear. But what we see is often not so clear. Whether it's blinking lights or impossible aerial movements, many have claimed to lay sight on phenomena beyond explanation. Over the past century alone, the National UFO Reporting Center has catalogued over 80 thousand eyewitness accounts of unidentified flying objects across the world. Perhaps unsurprisingly, nearly 90% of those accounts came from Americans. So what is it about America that makes UFO sightings such a regular occurence?  Is there really something non-human out there or are the sightings the result of an overactive collective imagination? Are there cultural or political forces at play that might explain why so many Americans have these strange experiences? These questions remain open. But with this analysis, my goal is to compare the trends in the number of UFO sightings in the US with the box office performance of science-fiction films. I will also account for changes in the country's population over the same time period.
