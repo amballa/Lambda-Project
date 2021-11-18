@@ -1,4 +1,7 @@
 
+
+
+
 # Historical Relationship between UFO Sightings and Popularity of Science-Fiction Movies
 
 ### Background
@@ -153,7 +156,6 @@ df_final = pd.merge(ufo_final ,scifi_rev, how = 'left')
 df_final = pd.merge(df_final, pop, how = 'left')
 df_final = df_final.fillna(0)
 df_final['adj_rev_mil'] = df_final['adj_rev_total'] / 1000000
-df_final = df_final.loc[:53]
 df_final.head(10)
 ```
 
@@ -198,22 +200,21 @@ print(model2.summary())
 ```
 ![image](https://user-images.githubusercontent.com/92558174/141722375-79531167-5fd7-4494-ba06-5249f306d793.png)
 
-Taking into account population, we can see that we still get a p-value of less that 5% for the revenue variable! And an adjusted R-Squared value of 0.736 means that even more of the year to year differences in sightings are accounted for by the two variable model.
+Taking into account population, we can see that we still get a p-value of less that 5% for the revenue variable! And an adjusted R-Squared value of 0.736 means that even more of the year to year differences in sightings are accounted for by the two-variable model.
 
 
 
 ## Concluding Thoughts and Analysis Limitations
 
-From the two-variable regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means association, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue was the growing usage of the internet and the rise of mass media in the late 90s and early 2000s. Some other limitations to consider include:
+From the two-variable regression model, we can see that there is _indeed_ a correlation between the number of reported UFO sightings and the adjusted revenue of science-fiction movies in the US from 1960 to 2013. However, **correlation means association, NOT causation**. We cannot attribute the rise of sightings exclusively to the growing popularity of the film genre or the population changes of the time. This analysis is far too narrow in scope to come away with any definitive causal conclusions. One confounding variable that I suspect affected both sightings and film revenue was the growing usage of the internet and the rise of mass media in the late 90s and early 2000s. Other limitations to consider include:
 
-- The analysis was limited to the time period from 1960 to 2013.
-- Over half of the TMDB dataset was unused due to either missing genre data or missing revenue data.
-- The science fiction genre encompasses more than just space, aliens and UFOs.
-- Almost every movie has multiple genres. If science-fiction was one of them, the movie was included in the analysis.
-- Movie revenue is total international box office revenue, not domestic revenue.
-- Revenue may not be the ideal metric to track a film's cultural impact.
-- This analysis does not take into account the effect of movies beyond the year of release in cinemas.
-- If there is indeed a causal relationship, the direction of causality is not obvious. Do popular science-fiction and alien-themed movies generate more sightings or could it be that increased sightings generate public interest which inspires movie producers to make more alien-themed movies?
+- The analysis was limited to the time period from 1960 to 2013
+- Over half of the TMDB dataset was unused due to either missing genre data or missing revenue data
+- The science fiction genre encompasses more than just space, aliens and UFOs
+- Almost every movie has multiple genres. If science-fiction was one of them, the movie was included in the analysis
+- Movie revenue is total international box office revenue, not domestic revenue
+- Revenue may not be the ideal metric to track a film's cultural impact
+- This analysis does not take into account the effect of movies beyond the year of release
 
 
 Similar analyses have been done by other data science enthusiasts but this one shows that even after accounting for population numbers, the relationship between UFO sightings and the box office performance of Sci-Fi movies is still statistically significant!
